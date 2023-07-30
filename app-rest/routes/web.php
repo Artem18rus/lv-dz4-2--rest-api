@@ -18,15 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken($request->token_name);
+
+// Route::post('/tokens/create', function (Request $request) {
+//     $token = $request->user()->createToken($request->token_name);
  
-    return ['token' => $token->plainTextToken];
-});
+//     return ['token' => $token->plainTextToken];
+// });
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/api/user', [App\Http\Controllers\CarsController::class, 'index'])->name('cars');
+// Route::get('/cars', [App\Http\Controllers\CarsController::class, 'index'])->name('cars');
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-});
+
+
+// Route::group(['middleware' => 'auth'], function() {
+//     Route::get('/api/user', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// });
